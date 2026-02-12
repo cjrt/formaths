@@ -5,9 +5,9 @@
 ! big[quadruple precision] = 33 decimal places
 
 module constants
+    use iso_fortran_env, only: real64, real128
     implicit none
 
-    use iso_fortran_env, only: real64, real128
     ! precision parameters
     integer, parameter :: dp = real64 ! double precision
     integer, parameter :: qp = real128 ! quad precision
