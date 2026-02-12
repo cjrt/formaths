@@ -1,26 +1,31 @@
 CF = gfortran
-FLAGS = -Wall -Wextra -std=f2008 -O2 -J$(BUILD)
+FLAGS = -Wall -Wextra -std=f2008 -O2 -Jbuild
 
-# order on dependencies
-SRC = \
-    constants/constants.f90 \
-    conversions/conversions.f90 \
-    trigonometry/math_trig_degrees.f90 \
-    test/test_trig.f90
+BUILD = build
+
+SRC = $(wildcard constants/*.f90) \
+      $(wildcard conversions/*.f90) \
+      $(wildcard trigonometry/*.f90) \
+      $(wildcard test/*.f90)   # optional
 
 OBJ = $(patsubst %.f90,$(BUILD)/%.o,$(SRC))
 
-TARGET = formaths
-BUILD = build
+LIB = libformaths.a
 
-all: $(TARGET)
-
-$(TARGET): $(OBJ)
-	$(CF) $(FLAGS) -o $@ $(OBJ)
+all: $(LIB)
 
 $(BUILD)/%.o: %.f90
 	@mkdir -p $(dir $@)
 	$(CF) $(FLAGS) -c $< -o $@
 
+$(LIB): $(OBJ)
+	ar rcs $@ $(OBJ)
+	@echo "Library $(LIB) made"
+
 clean:
-	rm -f $(BUILD) $(TARGET)
+	rm -rf $(BUILD) $(LIB)
+
+run: all
+	$(CF) -I$(BUILD) test/test.f90 $(LIB) -o test_program
+	./test_program
+
