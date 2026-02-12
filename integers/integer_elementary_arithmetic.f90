@@ -48,13 +48,13 @@ contains
     y = b
 
     ! handle negative numbers
-    if (x < 0) then
+    if (x .lt. 0) then
       ! check if x is negative
       x = -x
       ! if it is negative, flip the sign
       sign = -sign
     end if
-    if (y < 0) then
+    if (y .lt. 0) then
       ! check if y is negative
       y = -y
       ! if it is negative then flip the sign
@@ -88,18 +88,18 @@ contains
     quot = 0
 
     ! handle negative numbers, same as before
-    if (x < 0) then
+    if (x .lt. 0) then
       x = -x
       sign = -sign
     end if
-    if (y < 0) then
+    if (y .lt. 0) then
       y = -y
       sign = -sign
     end if
 
     tmp = x
     ! keep subtracting y from tmp while tmp is greater than or equal to y, integer division returns a whole number and ngl its kinda cheeks
-    do while (tmp >= y)
+    do while (tmp .ge. y)
       tmp = subints(tmp, y)
       quot = addints(quot, 1)
     end do
