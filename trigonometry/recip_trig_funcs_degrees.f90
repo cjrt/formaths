@@ -1,44 +1,67 @@
-! TODO in a lot of these functions if x = 0 itll divide by zero, let IEEE handle that for now but add guard rails later
-
 module recip_trig_funcs_degrees
-    use constants,          only: dp
-    use math_trig_degrees,  only: sind, cosd, tand, asind, acosd, atand
+    use ieee_arithmetic, only: ieee_value, ieee_quiet_nan
+    use constants, only: dp
+    use math_trig_degrees, only: sind, cosd, tand, asind, acosd, atand
     implicit none
     private
 
-    public :: cscd, secd, cotd
-    public :: acscd, asecd, acotd
+    public :: cscd, secd, cotd, acscd, asecd, acotd
 
 contains
 
-    pure real(dp) function cscd(x)
+    elemental pure real(dp) function cscd(x)
         real(dp), intent(in) :: x
-        cscd = 1.0_dp / sind(x)
+        if (mod(x, 180.0_dp) == 0.0_dp) then
+            cscd = ieee_value(x, ieee_quiet_nan)
+        else
+            cscd = 1.0_dp / sind(x)
+        end if
     end function
 
-    pure real(dp) function secd(x)
+    elemental pure real(dp) function secd(x)
         real(dp), intent(in) :: x
-        secd = 1.0_dp / cosd(x)
+        if (mod(abs(x), 180.0_dp) == 90.0_dp) then
+            secd = ieee_value(x, ieee_quiet_nan)
+        else
+            secd = 1.0_dp / cosd(x)
+        end if
     end function
 
-    pure real(dp) function cotd(x)
+    elemental pure real(dp) function cotd(x)
         real(dp), intent(in) :: x
-        cotd = 1.0_dp / tand(x)
+        if (mod(x, 180.0_dp) == 0.0_dp) then
+            cotd = ieee_value(x, ieee_quiet_nan)
+        else
+            cotd = 1.0_dp / tand(x)
+        end if
     end function
 
-    pure real(dp) function acscd(x)
+    elemental pure real(dp) function acscd(x)
         real(dp), intent(in) :: x
-        acscd = asind(1.0_dp / x)
+        if (abs(x) < 1.0_dp) then
+            acscd = ieee_value(x, ieee_quiet_nan)
+        else
+            acscd = asind(1.0_dp / x)
+        end if
     end function
 
-    pure real(dp) function asecd(x)
+    elemental pure real(dp) function asecd(x)
         real(dp), intent(in) :: x
-        asecd = acosd(1.0_dp / x)
+        if (abs(x) < 1.0_dp) then
+            asecd = ieee_value(x, ieee_quiet_nan)
+        else
+            asecd = acosd(1.0_dp / x)
+        end if
     end function
 
-    pure real(dp) function acotd(x)
+    elemental pure real(dp) function acotd(x)
         real(dp), intent(in) :: x
-        acotd = atand(1.0_dp / x)
+        ! if acot hits 0 its exactly 90 degrees
+        if (x == 0.0_dp) then
+            acotd = 90.0_dp
+        else
+            acotd = atand(1.0_dp / x)
+        end if
     end function
 
 end module recip_trig_funcs_degrees
