@@ -24,19 +24,19 @@ module conversions
 contains
 
     ! converts degrees to radians    
-    pure real(dp) function to_radians(x)
+    elemental pure real(dp) function to_radians(x)
         real(dp), intent(in) :: x
         to_radians = x * deg_to_rad_scale
     end function
     
     ! converts radians to degrees            
-    pure real(dp) function to_degrees(x)
+    elemental pure real(dp) function to_degrees(x)
         real(dp), intent(in) :: x
         to_degrees = x * rad_to_deg_scale
     end function
 
     ! converts imperial length units to metric
-    pure real(dp) function to_meters(x, unit)
+    elemental pure real(dp) function to_meters(x, unit)
         real(dp), intent(in) :: x
         character(*), intent(in) :: unit
 
@@ -53,43 +53,43 @@ contains
     end function
 
     ! converts meters to inches    
-    pure real(dp) function to_inches(x)
+    elemental pure real(dp) function to_inches(x)
         real(dp), intent(in) :: x
         to_inches = x / inch_to_meter_scale
     end function
 
     ! converts meters to feet
-    pure real(dp) function to_feet(x)
+    elemental pure real(dp) function to_feet(x)
         real(dp), intent(in) :: x
         to_feet = x / foot_to_meter_scale
     end function
 
     ! converts meters to miles            
-    pure real(dp) function to_miles(x)
+    elemental pure real(dp) function to_miles(x)
         real(dp), intent(in) :: x
         to_miles = x / mile_to_meter_scale
     end function
 
     ! converts pounds to kilograms
-    pure real(dp) function to_kilograms(x)
+    elemental pure real(dp) function to_kilograms(x)
         real(dp), intent(in) :: x
         to_kilograms = x * pound_to_kg_scale
     end function
     
     ! converts kilograms to pounds, using inverse          
-    pure real(dp) function to_pounds(x)
+    elemental pure real(dp) function to_pounds(x)
         real(dp), intent(in) :: x
         to_pounds = x / pound_to_kg_scale
     end function
 
     ! converts calories to joules
-    pure real(dp) function to_joules(x)
+    elemental pure real(dp) function to_joules(x)
         real(dp), intent(in) :: x
         to_joules = x * calorie_to_joule_scale
     end function
 
     ! standatrd pressure to pascals            
-    pure real(dp) function to_pascals(x)
+    elemental pure real(dp) function to_pascals(x)
         real(dp), intent(in) :: x
         to_pascals = x * atm_to_pa_scale
     end function
