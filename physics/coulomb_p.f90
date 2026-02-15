@@ -5,9 +5,9 @@ module coulomb_p
    implicit none
 
 contains
-    elemental pure real(dp) function coulomb(d)
-    real(dp), intent(in) :: d
-
+    elemental pure real(dp) function coulomb(d, q1, q1)
+    real(dp), intent(in) :: d, q1, q1
+    
     real(dp), parameter :: mx_compute_epsi = epsilon(1.0_dp)
     real(dp), parameter :: softening = sqrt(mx_compute_epsi)           
             
