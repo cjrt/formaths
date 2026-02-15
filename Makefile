@@ -6,6 +6,7 @@ BUILD = build
 SRC = $(wildcard constants/*.f90) \
       $(wildcard conversions/*.f90) \
       $(wildcard trigonometry/*.f90) \
+      $(wildcard physics/*.f90) \
       $(wildcard test/*.f90)   # optional
 
 OBJ = $(patsubst %.f90,$(BUILD)/%.o,$(SRC))
