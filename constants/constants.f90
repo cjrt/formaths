@@ -45,5 +45,6 @@ module constants
     real(dp), parameter :: m_neutron = 1.67492749804e-27_dp            ! Neutron mass (kg)
     real(dp), parameter :: n_avogadro = 6.02214076e23_dp                ! Avogadro's number
     real(dp), parameter :: r_gas = 8.314462618_dp                      ! Gas constant (J/mol⋅K)
+    real(dp), parameter :: k_e = 8.9875517923e9_dp                      ! Coulombs constant    
 
 end module constants
