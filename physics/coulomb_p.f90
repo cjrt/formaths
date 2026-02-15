@@ -11,8 +11,8 @@ contains
     real(dp), parameter :: mx_compute_epsi = epsilon(1.0_dp)
     real(dp), parameter :: softening = sqrt(mx_compute_epsi)           
             
-    real(dp), parameter :: d_sqr
-    real(dp), parameter :: c_pd 
+    real(dp) :: d_sqr
+    real(dp) :: c_pd 
 
     d_sqr = d*d
     c_pd = q1*q2            
