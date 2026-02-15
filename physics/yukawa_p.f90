@@ -5,6 +5,8 @@
 module yukawa_p
    use constants, only: dp
    implicit none
+   private
+   public : yukawa
 
 contains
     ! d is distance between particles
