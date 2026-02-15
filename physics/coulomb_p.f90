@@ -12,9 +12,9 @@ contains
     real(dp), parameter :: softening = sqrt(mx_compute_epsi)           
             
     real(dp), parameter :: d_sqr
-    d_sqr = d*d
+    real(dp), parameter :: c_pd 
 
-    real(dp), parameter :: c_pd
+    d_sqr = d*d
     c_pd = q1*q2            
  
     coulomb = (k_e * c_pd) / sqrt(d_sqr + softening)
