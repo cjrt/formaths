@@ -16,7 +16,8 @@ contains
     real(dp), parameter :: mx_compute_epsi = epsilon(1.0_dp)
     real(dp), parameter :: softening = sqrt(mx_compute_epsi)           
             
-    real(dp), parameter :: d_sqr = d*d
+    real(dp), parameter :: d_sqr 
+    d_sqr = d*d            
 
     yukawa = -g * (exp(-s * d) / sqrt(d_sqr + softening))
 
