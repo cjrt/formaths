@@ -1,8 +1,8 @@
 module coulomb_p
    use constants, only: dp, k_e
+   implicit none
    private
    public :: coulomb      
-   implicit none
 
 contains
     elemental pure real(dp) function coulomb(d, q1, q2)

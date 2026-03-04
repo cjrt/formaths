@@ -1,0 +1,11 @@
+-- Split windows faster
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = '[V]ertical Split' })
+vim.keymap.set('n', '<leader>s', '<C-w>s', { desc = '[S]plit Horizontal' })
+
+-- Close window faster (instead of typing :q)
+vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = '[Q]uit Window' })- Split windows faster
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = '[V]ertical Split' })
+vim.keymap.set('n', '<leader>s', '<C-w>s', { desc = '[S]plit Horizontal' })
+
+-- Close window faster (instead of typing :q)
+vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = '[Q]uit Window' })
